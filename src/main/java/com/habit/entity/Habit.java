@@ -1,8 +1,14 @@
 package com.habit.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -10,35 +16,48 @@ import javax.persistence.Table;
 public class Habit {
 	
 	@Id
-	private int id;
-	
+	@Column(name="habit_id")
+	private Integer habit_id;
+
 	@Column(name = "habit_name")
 	private String habit_name;
 	
 	private String active;
 	private String category;
+
+	//Name in the Other table (User)
+	@ManyToMany
+	@JoinTable(
+			name = "joined_table",
+			joinColumns = @JoinColumn(name = "habit_id"),
+			inverseJoinColumns= @JoinColumn(name = "user_id")
+			)
+	private List<User> userInHabit = new ArrayList<User>();
+	
 	
 	public Habit() {
 		//Whenever argument-ful constructor is made, ALWAYS make a no-arg constructor
 	}
 	
 	
-	public Habit(int id, String habit_name, String active, String category) {
+	public Habit(Integer habit_id, String habit_name, String active, String category) {
 		super();
-		this.id = id;
+		this.habit_id = habit_id;
 		this.habit_name = habit_name;
 		this.active = active;
 		this.category = category;
 	}
 
-
-	public int getId() {
-		return id;
+	
+	public Integer getHabit_id() {
+		return habit_id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+
+	public void setHabit_id(Integer habit_id) {
+		this.habit_id = habit_id;
 	}
+	
 
 	public String getHabit_name() {
 		return habit_name;

@@ -20,6 +20,7 @@ import com.habit.DTO.DailyEntryRepository;
 import com.habit.DTO.HabitRepository;
 import com.habit.entity.DailyEntry;
 import com.habit.entity.Habit;
+import com.habit.exception.HabitNotFoundException;
 
 @RestController
 public class HabitController {
@@ -41,11 +42,8 @@ public class HabitController {
 		Optional<Habit> habit = habitRepository.findById(id);
 
 		if (!habit.isPresent())
-			try {
-				throw new Exception("No Data");
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			throw new HabitNotFoundException("The Daily Entry with id : " + id + "  is Not Found");
+
 
 		Resource<Habit> resource = new Resource<Habit>(habit.get());
 		return resource;
@@ -70,11 +68,7 @@ public class HabitController {
 			Optional<DailyEntry> de = dailyEntryRepository.findById(id);
 
 			if (!de.isPresent())
-				try {
-					throw new Exception("No Data");
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				throw new HabitNotFoundException("The Daily Entry with " + id + "  is Not Found");
 
 			Resource<DailyEntry> resource = new Resource<DailyEntry>(de.get());
 			return resource;
