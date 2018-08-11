@@ -12,7 +12,7 @@ public class Habit {
 	@Id
 	private int id;
 	
-	@Column(name = "last_name")
+	@Column(name = "habit_name")
 	private String habit_name;
 	
 	private String active;
