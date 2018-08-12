@@ -34,7 +34,13 @@ public class Habit {
 			)
 	private List<User> userInHabit = new ArrayList<User>();
 	
-	
+
+	// Below initiates RECUSRIVE CALLS.
+//	public List<User> getUserInHabit() {
+//		return userInHabit;
+//	}
+
+
 	public Habit() {
 		//Whenever argument-ful constructor is made, ALWAYS make a no-arg constructor
 	}

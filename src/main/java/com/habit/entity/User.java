@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -25,7 +26,7 @@ public class User {
 	
 	
 	//The mapped by attribute is the variable declared in the other class
-	@ManyToMany(mappedBy="userInHabit")
+	@ManyToMany(mappedBy="userInHabit", fetch = FetchType.LAZY)
 	private List<Habit> habits = new ArrayList<Habit>();
 	
 	//private List<Habit> habits;
@@ -46,11 +47,6 @@ public class User {
 
 	public List<Habit> getHabits() {
 		return habits;
-	}
-
-
-	public void setHabits(List<Habit> habits) {
-		this.habits = habits;
 	}
 
 	public String getUser_email() {
