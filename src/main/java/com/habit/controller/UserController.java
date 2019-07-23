@@ -37,5 +37,10 @@ public class UserController {
 		Resource<User> resource = new Resource<User>(user.get());
 		return resource;
 	}
+	
+	// Retrieve all the habits of a user for current month
+	//select * from habit where habit_id in (select id from monthly_setting where user_id = 11011 and year = 2018 and month = 'JAN');
+
+	
 
 }
