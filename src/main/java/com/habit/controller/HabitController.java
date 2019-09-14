@@ -84,6 +84,21 @@ public class HabitController {
 
 		return std.get().getHabits();
 	}
+	
+	
+	// Retrieve all the habits of a user for current month
+		//select * from habit where habit_id in (select id from monthly_setting where user_id = 11011 and year = 2018 and month = 'JAN');
+		@GetMapping(path = "api/user/{id}/{mon}/{year}")
+		public List<Habit> retrieveHabitsForMonth(@PathVariable int id, String mon, int year) {
+			
+
+			if (!user.isPresent())
+				throw new HabitNotFoundException("The Daily Entry with id : " + id + "  is Not Found");
+
+			Resource<User> resource = new Resource<User>(user.get());
+			return resource;
+		}
+		
 
 	// Retrieve all users for a particular Habit
 //	@GetMapping(path = "/api/habit/{id}/users")
