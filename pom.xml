@@ -7,9 +7,9 @@
 	<groupId>com.habit</groupId>
 	<artifactId>habit-tracking-services</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<!-- <packaging>jar</packaging> -->
+	 <packaging>jar</packaging>
 	<!-- Preparing the WAR file for deployment -->
-	<packaging>war</packaging>
+	<!--<packaging>war</packaging>-->
 
 	<name>habit-tracking-services</name>
 	<description>Server for Habit Tracking App</description>
@@ -17,7 +17,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.4.RELEASE</version>
+		<version>2.1.7.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
