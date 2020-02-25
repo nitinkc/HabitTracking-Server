@@ -1,0 +1,24 @@
+version: '3.7'
+services:
+  movie-quote-service:
+    image: g00glen00b/movie-quote-service:0.0.1
+    ports:
+      - 8080:8080
+    depends_on:
+      - movie-quote-database
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://movie-quote-database/${DATABASE_NAME}?useSSL=false&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=${DATABASE_USER}
+      - SPRING_DATASOURCE_PASSWORD=${DATABASE_PASSWORD}
+  movie-quote-database:
+    image: mysql:8.0.14
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DATABASE_ROOT_PASSWORD}
+      - MYSQL_USER=${DATABASE_USER}
+      - MYSQL_PASSWORD=${DATABASE_PASSWORD}
+      - MYSQL_DATABASE=${DATABASE_NAME}
+      - MYSQL_ONETIME_PASSWORD=true
+    # to stop database container to recreate DB Each time and losing all the data,
+    # mapping a specific volume within the docker-compose.yml file:
+     volumes:
+      ./data/:/var/lib/mysql

@@ -37,5 +37,4 @@ public class UserController {
 		Resource<User> resource = new Resource<User>(user.get());
 		return resource;
 	}
-
 }
