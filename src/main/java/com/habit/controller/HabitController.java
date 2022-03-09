@@ -1,17 +1,5 @@
 package com.habit.controller;
 
-import java.net.URI;
-import java.util.List;
-import java.util.Optional;
-
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.Resource;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import com.habit.DTO.DailyEntryRepository;
 import com.habit.DTO.HabitRepository;
 import com.habit.DTO.UserRepository;
@@ -19,6 +7,15 @@ import com.habit.entity.DailyEntry;
 import com.habit.entity.Habit;
 import com.habit.entity.User;
 import com.habit.exception.HabitNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import javax.validation.Valid;
+import java.net.URI;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -39,14 +36,14 @@ public class HabitController {
 
     // Retrieve habit by Id
     @GetMapping(path = "/habit/{id}")
-    public Resource<Habit> retrieveUserById(@PathVariable int id) {
+    public ResponseEntity<Habit> retrieveUserById(@PathVariable int id) {
         Optional<Habit> habit = habitRepository.findById(id);
 
         if (!habit.isPresent())
             throw new HabitNotFoundException("The Daily Entry with id : " + id + "  is Not Found");
 
-        Resource<Habit> resource = new Resource<Habit>(habit.get());
-        return resource;
+
+        return ResponseEntity.ok(habit.get());
     }
 
     @PostMapping("/daily_entry")
@@ -61,14 +58,13 @@ public class HabitController {
 
     // Retrieve a day's entry by Id
     @GetMapping(path = "/daily_entry/{id}")
-    public Resource<DailyEntry> retrieveDEbyid(@PathVariable int id) {
+    public ResponseEntity<DailyEntry> retrieveDEbyid(@PathVariable int id) {
         Optional<DailyEntry> de = dailyEntryRepository.findById(id);
 
         if (!de.isPresent())
             throw new HabitNotFoundException("The Daily Entry with " + id + "  is Not Found");
 
-        Resource<DailyEntry> resource = new Resource<DailyEntry>(de.get());
-        return resource;
+        return ResponseEntity.ok(de.get());
     }
 
     // Retrieve all the habits of a user

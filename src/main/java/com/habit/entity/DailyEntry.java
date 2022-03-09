@@ -1,16 +1,11 @@
 package com.habit.entity;
 
+import javax.persistence.*;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 @Entity
-@Table(name = "daily_entry", schema = "HabitTracking")
+//@Table(name = "daily_entry", schema = "HabitTracking")
+@Table(name = "daily_entry")
 public class DailyEntry {
 
 	//Hibernate requires that entity tables have primary keys. End of story.

@@ -20,7 +20,7 @@ docker start mysql_habit_tracking
 docker stop mysql_habit_tracking
 
 ##### Without volume Setup
-docker run --name=mysql_habit_tracking --env="MYSQL_ROOT_PASSWORD=root" --env="MYSQL_PASSWORD=root" -d -p=3306:3306  mysql
+docker run --name=mysql_habit_tracking --env="MYSQL_ROOT_PASSWORD=root" --env="MYSQL_PASSWORD=root" -d -p=3000:3306  mysql/mysql-server:latest
 
 ##### With external volume
 ```
