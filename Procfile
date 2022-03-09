@@ -1,0 +1,1 @@
+web: java -Dserver.port=$PORT -jar build/libs/habit-tracking-services-0.0.1-SNAPSHOT.jar
